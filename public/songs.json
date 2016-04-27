@@ -1,0 +1,6 @@
+var songs = [
+    {"title": "Don't You Worry Child", "artist": "Swedish House Mafia"},
+    {"title": "Don't", "artist": "Ed Sheeran"},
+    {"title": "Hello", "artist": "Adele"},
+    {"title": "Swimming Pools", "artist": "Kendrick Lamar"}
+  ];

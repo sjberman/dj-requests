@@ -11,23 +11,24 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="songs.json"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
-    function search() {
-      let query = $("#search-box").val();
-      let results = [];
-      $.each(songs, function(k,v) {
-        if (v.artist.match(query) || v.title.match(query)) {
-          results.push(v);
+        function search() {
+            let query = $("#search-box").val();
+            let results = [];
+            $.each(songs, function (k, v) {
+                if (v.artist.match(query) || v.title.match(query)) {
+                    results.push(v);
+                }
+            });
+            $("#result-list").empty();
+            $.each(results, function (k, v) {
+                var res = '<a href="#" class="list-group-item">' +
+                '<h4 class="list-group-item-heading">' + v.title + '</h4>' +
+                '<p class="list-group-item-text">' + v.artist + '</p> </a>';
+                $(res).appendTo($("#result-list"));
+            });
         }
-      });
-      $("#result-list").empty();
-      $.each(results, function(k,v) {
-        var res = '<a href="#" class="list-group-item">' +
-        '<h4 class="list-group-item-heading">' + v.title + '</h4>' +
-        '<p class="list-group-item-text">' + v.artist + '</p> </a>';
-        $(res).appendTo($("#result-list"));
-      });
-    }
     </script>
 </head>
 <body>
@@ -38,11 +39,9 @@
                     <h1>Request a Song</h1>
                 </div>
 
-                <h3>Look Up
-
+                <h3>Look Up        
                     <small>
                         <i class="fa fa-spotify" aria-hidden="true"></i>,
-
                         <i class="fa fa-youtube-square" aria-hidden="true"></i>,
                             title, or artist
                         </small>
@@ -69,12 +68,28 @@
                 </div>
 
             </div>
+            <!--Submit Request Button and Confirmation Popup-->
             <div class="text-center">
-                <button id="submitButton" class="btn btn-primary">Submit Request</button>
+                <button id="submitButtom" class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Submit Request</button>
+                <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Huzzah!</h4>
+                            </div>
+                            <div class="modal-body">
+                                Your song request(s) have been submitted!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 
 </body>
 </html>

@@ -13,6 +13,7 @@
     <script type="text/javascript" src="songs.json"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
+      'use strict';
       var select = function(songTitle,songArtist) {
         var songArray = [];
         if (localStorage.getItem('requests')) {
@@ -24,16 +25,15 @@
         localStorage.setItem('requests',JSON.stringify(songArray));
         let title = songTitle.replace(/@/,'\'');
         let artist = songArtist.replace(/@/,'\'');
-        request = {"title":title,"artist":artist};
+        let request = {"title":title,"artist":artist};
         document.getElementById("modalBodyText").innerHTML="Your song request ("+request.title+") has been submitted!";
       };
         var search = function() {
-            let query = $("#search-box").val();
-            let results = [];
-            $.each(songs, function (k, v) {
-                if (v.artist.match(query) || v.title.match(query)) {
-                    results.push(v);
-                }
+            let query = $("#search-box").val().toLowerCase();
+
+            let results = songs.filter(song => {
+                return song.artist.toLowerCase().includes(query) ||
+                        song.title.toLowerCase().includes(query);
             });
             $("#result-list").empty();
             $.each(results, function (l, w) {

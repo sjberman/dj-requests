@@ -11,19 +11,19 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
 
     <script src="js/jquery.min.js"></script>
-            <!-- tablesorter plugin -->
+    <!-- tablesorter plugin -->
     <script src="js/jquery.tablesorter.js"></script>
     <!-- tablesorter widget file - loaded after the plugin -->
     <script src="js/jquery.tablesorter.widgets.js"></script>
     <script>
-  	$(function(){
-  		$('table').tablesorter({
-  			widgets        : ['zebra', 'columns'],
-  			usNumberFormat : false,
-  			sortReset      : true,
-  			sortRestart    : true
-  		});
-  	});
+        $(function () {
+            $('table').tablesorter({
+                widgets: ['zebra', 'columns'],
+                usNumberFormat: false,
+                sortReset: true,
+                sortRestart: true
+            });
+        });
   	</script>
 
 </head>
@@ -47,39 +47,48 @@
                     <thead>
                         <tr class="info">
                             <th>Title <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span> </th>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
                             <th>Artist <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
                             <th>Requests <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
                             <th>Genre <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
                             <th>BPM <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
                             <th>Done</th>
                         </tr>
                     </thead>
                     <tbody id="requestTable">
-                      <script>
-                      var lsArray = localStorage.getItem('requests');
-                      var requests = JSON.parse(lsArray);
-                      $.each(requests,function(k,v) {
-                        let row = $("<tr></tr>");
-                        let effupedtitle = v.title;
-                        let title = effupedtitle.replace('@','\'');
-                        let effupedartist = v.artist;
-                        let artist = effupedartist.replace('@','\'');
-                        $(row).append("<td>"+title+"</td>");
-                        $(row).append("<td>"+artist+"</td>");
-                        $(row).append("<td>23985794</td>");
-                        $(row).append("<td>Dankcore</td>");
-                        $(row).append("<td>69</td>");
-                        $(row).append("<td><input type='checkbox'/></td>");
-                        $("#requestTable").append(row);
-                      });
+                        <script>
+                            var lsArray = localStorage.getItem('requests');
+                            var requests = JSON.parse(lsArray);
+                            $.each(requests, function (k, v) {
+                                let row = $("<tr></tr>");
+                                let effupedtitle = v.title;
+                                let title = effupedtitle.replace('@', '\'');
+                                let effupedartist = v.artist;
+                                let artist = effupedartist.replace('@', '\'');
+                                $(row).append("<td>" + title + "</td>");
+                                $(row).append("<td>" + artist + "</td>");
+                                $(row).append("<td>23985794</td>");
+                                $(row).append("<td>Dankcore</td>");
+                                $(row).append("<td>69</td>");
+                                $(row).append("<td><input type='checkbox'/></td>");
+                                $("#requestTable").append(row);
+                            });
                       </script>
                     </tbody>
                 </table>
+                <div class="text-right">
+                    <button id="clear" class="btn btn-primary">Clear</button>
+                    <script type="text/javascript">
+                        document.getElementById("clear").onclick = function clear() {
+                            localStorage.clear();
+                            window.location.reload();
+                        };
+                        </script>
+                </div>
             </div>
         </div>
     </div>

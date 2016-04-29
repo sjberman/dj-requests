@@ -9,6 +9,23 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+            <!-- tablesorter plugin -->
+    <script src="js/jquery.tablesorter.js"></script>
+    <!-- tablesorter widget file - loaded after the plugin -->
+    <script src="js/jquery.tablesorter.widgets.js"></script>
+    <script>
+  	$(function(){
+  		$('table').tablesorter({
+  			widgets        : ['zebra', 'columns'],
+  			usNumberFormat : false,
+  			sortReset      : true,
+  			sortRestart    : true
+  		});
+  	});
+  	</script>
+
 </head>
 <body>
     <div class="container" role="main">
@@ -26,14 +43,19 @@
                     </div>
                 </div>
                 <h3>Requests</h3>
-                <table class="table table-bordered table-hover">
+                <table class="tablesorter table table-bordered table-hover">
                     <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Artist</th>
-                            <th>Requests</th>
-                            <th>Genre</th>
-                            <th>BPM</th>
+                        <tr class="info">
+                            <th>Title <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span> </th>
+                            <th>Artist <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
+                            <th>Requests <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
+                            <th>Genre <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
+                            <th>BPM <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                      <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
                             <th>Done</th>
                         </tr>
                     </thead>

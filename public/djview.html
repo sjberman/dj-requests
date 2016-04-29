@@ -59,25 +59,25 @@
                             <th>Done</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Hello</td>
-                            <td>Adele</td>
-                            <td>3</td>
-                            <td>Pop</td>
-                            <td>79</td>
-                            <td>
-                                <input type="checkbox" /></td>
-                        </tr>
-                        <tr>
-                            <td>Don't You Worry Child</td>
-                            <td>Swedish House Mafia</td>
-                            <td>2</td>
-                            <td>Electric</td>
-                            <td>129</td>
-                            <td>
-                                <input type="checkbox" /></td>
-                        </tr>
+                    <tbody id="requestTable">
+                      <script>
+                      var lsArray = localStorage.getItem('requests');
+                      var requests = JSON.parse(lsArray);
+                      $.each(requests,function(k,v) {
+                        let row = $("<tr></tr>");
+                        let effupedtitle = v.title;
+                        let title = effupedtitle.replace('@','\'');
+                        let effupedartist = v.artist;
+                        let artist = effupedartist.replace('@','\'');
+                        $(row).append("<td>"+title+"</td>");
+                        $(row).append("<td>"+artist+"</td>");
+                        $(row).append("<td>23985794</td>");
+                        $(row).append("<td>Dankcore</td>");
+                        $(row).append("<td>69</td>");
+                        $(row).append("<td><input type='checkbox'/></td>");
+                        $("#requestTable").append(row);
+                      });
+                      </script>
                     </tbody>
                 </table>
             </div>

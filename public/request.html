@@ -12,9 +12,22 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="songs.json"></script>
     <script src="js/bootstrap.min.js"></script>
-
     <script>
-        function search() {
+      var select = function(songTitle,songArtist) {
+        var songArray = [];
+        if (localStorage.getItem('requests')) {
+          var lsArray = localStorage.getItem('requests');
+          songArray = JSON.parse(lsArray);
+        }
+        var newReq = {"title":songTitle,"artist":songArtist};
+        songArray.push(newReq);
+        localStorage.setItem('requests',JSON.stringify(songArray));
+        let title = songTitle.replace(/@/,'\'');
+        let artist = songArtist.replace(/@/,'\'');
+        request = {"title":title,"artist":artist};
+        document.getElementById("modalBodyText").innerHTML="Your song request ("+request.title+") has been submitted!";
+      };
+        var search = function() {
             let query = $("#search-box").val();
             let results = [];
             $.each(songs, function (k, v) {
@@ -23,13 +36,17 @@
                 }
             });
             $("#result-list").empty();
-            $.each(results, function (k, v) {
-                var res = '<a href="#" class="list-group-item">' +
-                '<h4 class="list-group-item-heading">' + v.title + '</h4>' +
-                '<p class="list-group-item-text">' + v.artist + '</p> </a>';
+            $.each(results, function (l, w) {
+                let title = w.title.replace(/'/,'@');
+                let artist = w.artist.replace(/'/,'@');
+                let res = $("<button onclick='select(\""+title+"\",\""+artist+"\")'></button>");
+                $(res).addClass("list-group-item");
+                $(res).append('<h4 class="list-group-item-heading">' + w.title + '</h4>');
+                $(res).append('<p class="list-group-item-text">' + w.artist + '</p>');
                 $(res).appendTo($("#result-list"));
             });
-        }
+        };
+
     </script>
 </head>
 <body>
@@ -79,8 +96,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Huzzah!</h4>
                             </div>
-                            <div class="modal-body">
-                                Your song request(s) have been submitted!
+                            <div id="modalBodyText" class="modal-body">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

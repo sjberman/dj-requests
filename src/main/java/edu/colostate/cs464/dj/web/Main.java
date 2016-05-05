@@ -9,6 +9,8 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
 public class Main {
@@ -24,16 +26,13 @@ public class Main {
 		ContextHandler resourcesContext = new ContextHandler("/");
 		resourcesContext.setHandler(resources);
 
-		ServletContextHandler apiContext = new ServletContextHandler(server, "/");
-		ServletHolder apiHolder = apiContext.addServlet(ServletContainer.class, "/api/*");
-		apiHolder.setInitParameter(
-				"jersey.config.server.provider.packages",
-				"edu.colostate.cs464.dj.web");
+		ResourceConfig config = new ResourceConfig();
+		config.register(JacksonFeature.class);
+		config.packages("edu.colostate.cs464.dj.web");
 
-		ContextHandlerCollection contexts = new ContextHandlerCollection();
-		contexts.setHandlers(new Handler[] { resourcesContext, apiContext });
-		//server.setHandler(contexts);
-		//server.setHandler(apiContext);
+		ServletHolder apiHolder = new ServletHolder(new ServletContainer(config));
+		ServletContextHandler apiContext = new ServletContextHandler(server, "/");
+		apiContext.addServlet(apiHolder, "/api/*");
 
 		HandlerList handlers = new HandlerList();
 		handlers.setHandlers(new Handler[] {

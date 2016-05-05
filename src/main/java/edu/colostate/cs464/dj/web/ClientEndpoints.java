@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 public class ClientEndpoints {
 
 	@GET
-	@Path("test")
+	@Path("search")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<String> test(@QueryParam("q") String query) throws IOException {
 		return YouTubeAPI.get().search(query).stream()

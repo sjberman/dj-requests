@@ -17,10 +17,10 @@
         <div class="page-header text-center">
             <h1>DJ X</h1>
             <div class="text-right">
-                <button id="requests" class="btn btn-primary">Requests</button>
+                <button id="requests" class="btn btn-primary">Request a Song</button>
                 <script type="text/javascript">
                     document.getElementById("requests").onclick = function () {
-                        location.href = "djview.html";
+                        location.href = "request.html";
                     };
                 </script>
             </div>
@@ -32,9 +32,6 @@
                     <label for="pic">Picture:</label>
                     <img src="img/dj-profile.jpg" alt="DJ picture" class="img-responsive img-circle" width="300" height="230" />
                 </div>
-                <div class="row">
-                    <span class="btn btn-default btn-file">Upload<input type="file" /></span>
-                </div>
             </div>
             <div class="col-xs-4">
                 <div class="form-group">
@@ -44,15 +41,11 @@
                             <a class="btn btn-block btn-social btn-twitter">
                                 <span class="fa fa-twitter"></span> Twitter
                             </a>
-                            <textarea class="form-control" style="width: 300%; resize: none" rows="1" id="twitter"></textarea>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-4">
                             <a class="btn btn-block btn-social btn-facebook">
                                 <span class="fa fa-facebook"></span> Facebook
                             </a>
-                            <textarea class="form-control" style="width: 300%; resize: none" rows="1" id="facebook"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -60,15 +53,11 @@
                             <a class="btn btn-block btn-social btn-spotify">
                                 <span class="fa fa-spotify"></span> Spotify
                             </a>
-                            <textarea class="form-control" style="width: 300%; resize: none" rows="1" id="spotify"></textarea>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-xs-4">
                             <a class="btn btn-block btn-social btn-soundcloud">
                                 <span class="fa fa-soundcloud"></span> SoundCloud
                             </a>
-                            <textarea class="form-control" style="width: 300%; resize: none" rows="1" id="soundcloud"></textarea>
                         </div>
                     </div>
                 </div>
@@ -76,24 +65,15 @@
         </div>
         <div class="form-group">
             <label for="bio">Bio:</label>
-            <textarea class="form-control" style="width: 80%; resize: none" rows="5" id="bio"></textarea>
-        </div>
-        <!--Save Changes Button and Confirmation Popup-->
-        <div class="text-center">
-            <button id="saveChanges" class="btn btn-primary" data-toggle="modal" data-target="#saveModal">Save Changes</button>
-            <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            Your changes have been saved!                    
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p>A DJ serves as the master of ceremonies and music box for events such as parties, weddings, and bar trivia nights. 
+                Though our participants fit into one demographic, the position can be held by nearly anyone with a knack for music and decent soft skills.
+                They need to know how to mix and blend songs seamlessly throughout an event and must be able to read the crowd and adjust their performance accordingly. 
+                It’s important to recognize when the crowd is interested in dancing and when they want to move on to other things. 
+                A DJ’s main goal is to have the overall process from setup to takedown be smooth and seamless. 
+                The DJ wants the music to fit the event and the vibe of the crowd without technical difficulties or crowd complaints.
+            </p>
         </div>
     </div>
 </body>
 </html>
+

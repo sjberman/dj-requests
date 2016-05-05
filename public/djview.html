@@ -24,7 +24,7 @@
                 sortRestart: true
             });
         });
-  	</script>
+    </script>
 
 </head>
 <body>
@@ -34,28 +34,33 @@
                 <div class="page-header text-center">
                     <h1>DJ X</h1>
                     <div class="text-right">
-                        <button id="profile" class="btn btn-primary">Profile</button>
-                        <script type="text/javascript">
-                            document.getElementById("profile").onclick = function () {
-                                location.href = "profile.html";
-                            };
-                        </script>
+                        <a href="profile.html" class="btn btn-primary">Profile</a>
                     </div>
                 </div>
                 <h3>Requests</h3>
                 <table class="tablesorter table table-bordered table-hover">
                     <thead>
                         <tr class="info">
-                            <th>Title <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
-                            <th>Artist <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
-                            <th>Requests <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
-                            <th>Genre <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
-                            <th>BPM <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span></th>
+                            <th>Title
+                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                            </th>
+                            <th>Artist
+                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                            </th>
+                            <th>Requests
+                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                            </th>
+                            <th>Genre
+                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                            </th>
+                            <th>BPM
+                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                            </th>
                             <th>Done</th>
                         </tr>
                     </thead>
@@ -83,11 +88,11 @@
                 <div class="text-right">
                     <button id="clear" class="btn btn-primary">Clear</button>
                     <script type="text/javascript">
-                        document.getElementById("clear").onclick = function clear() {
+                        $("#clear").on('click', () => {
                             localStorage.clear();
                             window.location.reload();
-                        };
-                        </script>
+                        });
+                    </script>
                 </div>
             </div>
         </div>

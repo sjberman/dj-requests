@@ -1,99 +1,95 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>DJ Profile</title>
+        <title>DJ Profile</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class="container" role="main">
-        <div class="page-header text-center">
-            <h1>DJ X</h1>
-            <div class="text-right">
-                <button id="requests" class="btn btn-primary">Requests</button>
-                <script type="text/javascript">
-                    document.getElementById("requests").onclick = function () {
-                        location.href = "djview.html";
-                    };
-                </script>
-            </div>
-        </div>
-        <h3>Profile</h3>
-        <div class="row">
-            <div class="col-xs-4">
-                <div class="form-group">
-                    <label for="pic">Picture:</label>
-                    <img src="img/dj-profile.jpg" alt="DJ picture" class="img-responsive img-circle" width="300" height="230" />
-                </div>
-                <div class="row">
-                    <span class="btn btn-default btn-file">Upload<input type="file" /></span>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container" role="main">
+            <div class="page-header text-center">
+                <h1>DJ X</h1>
+                <div class="text-right">
+                    <a href="djview.html" class="btn btn-primary">Requests</a>
                 </div>
             </div>
-            <div class="col-xs-4">
-                <div class="form-group">
-                    <label for="links">Find Me:</label>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <a class="btn btn-block btn-social btn-twitter">
-                                <span class="fa fa-twitter"></span> Twitter
-                            </a>
-                            <textarea class="form-control" style="width: 300%; resize: none" rows="1" id="twitter"></textarea>
-                        </div>
+
+            <h3>Profile</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Picture:</h4>
+
+                    <div class="form-group">
+                        <img src="img/dj-profile.jpg" alt="DJ picture" class="img-responsive img-circle" width="300" height="230" />
                     </div>
                     <div class="row">
-                        <div class="col-xs-4">
-                            <a class="btn btn-block btn-social btn-facebook">
-                                <span class="fa fa-facebook"></span> Facebook
-                            </a>
-                            <textarea class="form-control" style="width: 300%; resize: none" rows="1" id="facebook"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <a class="btn btn-block btn-social btn-spotify">
-                                <span class="fa fa-spotify"></span> Spotify
-                            </a>
-                            <textarea class="form-control" style="width: 300%; resize: none" rows="1" id="spotify"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <a class="btn btn-block btn-social btn-soundcloud">
-                                <span class="fa fa-soundcloud"></span> SoundCloud
-                            </a>
-                            <textarea class="form-control" style="width: 300%; resize: none" rows="1" id="soundcloud"></textarea>
-                        </div>
+                        <span class="btn btn-default btn-file">Upload <input type="file"/></span>
                     </div>
                 </div>
+
+                <div class="col-md-8">
+                    <h4>Find Me:</h4>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            <i class="fa fa-fw fa-twitter"></i> Twitter
+                        </label>
+                        <input id="twitter" type="text" class="form-control" placeholder="http://twitter.com/...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            <i class="fa fa-fw fa-facebook"></i> Facebook
+                        </label>
+                        <input id="facebook" type="text" class="form-control" placeholder="http://facebook.com/...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            <i class="fa fa-fw fa-spotify"></i> Spotify
+                        </label>
+                        <input id="spotify" type="text" class="form-control" placeholder="http://spotify.com/...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            <i class="fa fa-fw fa-twitter"></i> SoundCloud
+                        </label>
+                        <input id="soundcloud" type="text" class="form-control" placeholder="http://soundcloud.com/...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="bio">Bio:</label>
+                        <textarea class="form-control" style="resize: none" rows="5" id="bio"></textarea>
+                    </div>
+
+                    <button id="saveChanges" class="btn btn-primary" data-toggle="modal" data-target="#saveModal">Save Changes</button>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="bio">Bio:</label>
-            <textarea class="form-control" style="width: 80%; resize: none" rows="5" id="bio"></textarea>
-        </div>
-        <!--Save Changes Button and Confirmation Popup-->
-        <div class="text-center">
-            <button id="saveChanges" class="btn btn-primary" data-toggle="modal" data-target="#saveModal">Save Changes</button>
-            <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            Your changes have been saved!                    
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+
+            <!--Save Changes Button and Confirmation Popup-->
+            <div class="text-center">
+
+                <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                Your changes have been saved!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

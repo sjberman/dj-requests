@@ -1,79 +1,75 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>DJ Profile</title>
+        <title>DJ Profile</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class="container" role="main">
-        <div class="page-header text-center">
-            <h1>DJ X</h1>
-            <div class="text-right">
-                <button id="requests" class="btn btn-primary">Request a Song</button>
-                <script type="text/javascript">
-                    document.getElementById("requests").onclick = function () {
-                        location.href = "request.html";
-                    };
-                </script>
-            </div>
-        </div>
-        <h3>Profile</h3>
-        <div class="row">
-            <div class="col-xs-4">
-                <div class="form-group">
-                    <label for="pic">Picture:</label>
-                    <img src="img/dj-profile.jpg" alt="DJ picture" class="img-responsive img-circle" width="300" height="230" />
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container" role="main">
+            <div class="page-header text-center">
+                <h1>DJ X's profile</h1>
+                <div class="text-right">
+                    <a href="request.html" class="btn btn-primary">
+                        <i class="fa fa-music"></i> &nbsp;
+                        Request a Song
+                    </a>
                 </div>
             </div>
-            <div class="col-xs-4">
-                <div class="form-group">
-                    <label for="links">Find Me:</label>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <a class="btn btn-block btn-social btn-twitter">
-                                <span class="fa fa-twitter"></span> Twitter
-                            </a>
-                        </div>
-                        <div class="col-xs-4">
-                            <a class="btn btn-block btn-social btn-facebook">
-                                <span class="fa fa-facebook"></span> Facebook
-                            </a>
-                        </div>
+
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <img src="img/dj-profile.jpg" alt="DJ picture" class="img-responsive img-circle" width="300" height="230" />
                     </div>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <a class="btn btn-block btn-social btn-spotify">
-                                <span class="fa fa-spotify"></span> Spotify
-                            </a>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label for="links">Find Me:</label>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <a class="btn btn-block btn-social btn-twitter">
+                                    <span class="fa fa-fw fa-twitter"></span> Twitter
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a class="btn btn-block btn-social btn-facebook">
+                                    <span class="fa fa-fw fa-facebook"></span> Facebook
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-xs-4">
-                            <a class="btn btn-block btn-social btn-soundcloud">
-                                <span class="fa fa-soundcloud"></span> SoundCloud
-                            </a>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <a class="btn btn-block btn-social btn-spotify">
+                                    <span class="fa fa-fw fa-spotify"></span> Spotify
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a class="btn btn-block btn-social btn-soundcloud">
+                                    <span class="fa fa-fw fa-soundcloud"></span> SoundCloud
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                <p>A DJ serves as the master of ceremonies and music box for events such as parties, weddings, and bar trivia nights.
+                    Though our participants fit into one demographic, the position can be held by nearly anyone with a knack for music and decent soft skills.
+                    They need to know how to mix and blend songs seamlessly throughout an event and must be able to read the crowd and adjust their performance accordingly.
+                    It’s important to recognize when the crowd is interested in dancing and when they want to move on to other things.
+                    A DJ’s main goal is to have the overall process from setup to takedown be smooth and seamless.
+                    The DJ wants the music to fit the event and the vibe of the crowd without technical difficulties or crowd complaints.
+                </p>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="bio">Bio:</label>
-            <p>A DJ serves as the master of ceremonies and music box for events such as parties, weddings, and bar trivia nights. 
-                Though our participants fit into one demographic, the position can be held by nearly anyone with a knack for music and decent soft skills.
-                They need to know how to mix and blend songs seamlessly throughout an event and must be able to read the crowd and adjust their performance accordingly. 
-                It’s important to recognize when the crowd is interested in dancing and when they want to move on to other things. 
-                A DJ’s main goal is to have the overall process from setup to takedown be smooth and seamless. 
-                The DJ wants the music to fit the event and the vibe of the crowd without technical difficulties or crowd complaints.
-            </p>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
-

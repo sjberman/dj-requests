@@ -33,9 +33,10 @@
                 $.get( "/api/search", { q: query } ).done(function(data) {
                     $("#result-list").empty();
                     for (var i = 0; i < data.length; i++) {
-                        let res = $("<button onclick='select(\"" + data[i] + "\")'></button>");
+                        let res = $("<button onclick='select(\"" + data[i].split("-")[0] + "\",\"" + data[i].split("-")[1] + "\")'></button>");
                         $(res).addClass("list-group-item");
-                        $(res).append('<h4 class="list-group-item-heading">' + data[i] + '</h4>');
+                        $(res).append('<h4 class="list-group-item-heading">' + data[i].split("-")[0] + '</h4>');
+                        $(res).append('<p class="list-group-item-text">' + data[i].split("-")[1] + '</p>');
                         $(res).appendTo($("#result-list"));
                     }
                 });

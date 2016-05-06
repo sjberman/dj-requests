@@ -30,20 +30,14 @@
           };
             var search = function() {
                 let query = $("#search-box").val().toLowerCase();
-
-                let results = songs.filter(song => {
-                    return song.artist.toLowerCase().includes(query) ||
-                            song.title.toLowerCase().includes(query);
-                });
-                $("#result-list").empty();
-                $.each(results, function (l, w) {
-                    let title = w.title.replace(/'/,'@');
-                    let artist = w.artist.replace(/'/,'@');
-                    let res = $("<button onclick='select(\""+title+"\",\""+artist+"\")'></button>");
-                    $(res).addClass("list-group-item");
-                    $(res).append('<h4 class="list-group-item-heading">' + w.title + '</h4>');
-                    $(res).append('<p class="list-group-item-text">' + w.artist + '</p>');
-                    $(res).appendTo($("#result-list"));
+                $.get( "/api/search", { q: query } ).done(function(data) {
+                    $("#result-list").empty();
+                    for (var i = 0; i < data.length; i++) {
+                        let res = $("<button onclick='select(\"" + data[i] + "\")'></button>");
+                        $(res).addClass("list-group-item");
+                        $(res).append('<h4 class="list-group-item-heading">' + data[i] + '</h4>');
+                        $(res).appendTo($("#result-list"));
+                    }
                 });
             };
 

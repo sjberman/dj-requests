@@ -15,6 +15,7 @@
             'use strict';
             $(document).ready(() => {
                 let searchBox = $('#search-box');
+                let searchButton = $('#search-button');
                 let resultRow = $('#result-row')
                 let resultList = $('#result-list');
                 let submitButton = $('#submit-button');
@@ -27,6 +28,9 @@
                         modalBody.html(
                             `Your song request (${song.title} -
                              ${song.artist}) has been submitted!`);
+
+                        resultRow.hide();
+                        searchBox.val('');
                     });
                 };
 
@@ -64,6 +68,8 @@
                         search();
                     }
                 });
+
+                searchButton.click(search);
 
                 submitButton.click(() => {
                     if (!selected) {
@@ -104,7 +110,7 @@
                             </span>
                             <input id="search-box" type="url" class="form-control">
                             <span class="input-group-btn">
-                                <button id="searchButton" class="btn btn-primary" onclick="search()">Search</button>
+                                <button id="search-button" class="btn btn-primary">Search</button>
                             </span>
                         </div>
                     </div>

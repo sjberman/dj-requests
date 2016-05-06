@@ -20,7 +20,7 @@ public class Main {
 
 		ResourceHandler resources = new ResourceHandler();
 		resources.setResourceBase("./public");
-		resources.setWelcomeFiles(new String[] { "index.html" });
+		resources.setWelcomeFiles(new String[] { "request.html", "index.html" });
 		resources.setDirectoriesListed(true);
 
 		ContextHandler resourcesContext = new ContextHandler("/");

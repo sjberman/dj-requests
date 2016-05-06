@@ -1,101 +1,135 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>DJ Requests</title>
+        <title>DJ Requests</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/tablesorter.css" rel="stylesheet">
 
-    <script src="js/jquery.min.js"></script>
-    <!-- tablesorter plugin -->
-    <script src="js/jquery.tablesorter.js"></script>
-    <!-- tablesorter widget file - loaded after the plugin -->
-    <script src="js/jquery.tablesorter.widgets.js"></script>
-    <script>
-        $(function () {
-            $('table').tablesorter({
-                widgets: ['zebra', 'columns'],
-                usNumberFormat: false,
-                sortReset: true,
-                sortRestart: true
-            });
-        });
-    </script>
+        <script src="js/jquery.min.js"></script>
+        <!-- tablesorter plugin -->
+        <script src="js/jquery.tablesorter.js"></script>
+        <!-- tablesorter widget file - loaded after the plugin -->
+        <script src="js/jquery.tablesorter.widgets.js"></script>
 
-</head>
-<body>
-    <div class="container" role="main">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-header text-center">
-                    <h1>DJ X</h1>
-                    <div class="text-right">
-                        <a href="profile.html" class="btn btn-primary">Profile</a>
+    </head>
+    <body>
+        <div class="container" role="main">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header text-center">
+                        <h1>DJ X</h1>
+                        <div class="text-right">
+                            <a href="profile.html" class="btn btn-primary">Profile</a>
+                        </div>
                     </div>
-                </div>
-                <h3>Requests</h3>
-                <table class="tablesorter table table-bordered table-hover">
-                    <thead>
-                        <tr class="info">
-                            <th>Title
-                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
-                            </th>
-                            <th>Artist
-                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
-                            </th>
-                            <th>Requests
-                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
-                            </th>
-                            <th>Genre
-                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
-                            </th>
-                            <th>BPM
-                                <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
-                                <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
-                            </th>
-                            <th>Done</th>
-                        </tr>
-                    </thead>
-                    <tbody id="requestTable">
-                        <script>
-                            var lsArray = localStorage.getItem('requests');
-                            var requests = JSON.parse(lsArray);
-                            $.each(requests, function (k, v) {
-                                let row = $("<tr></tr>");
-                                let effupedtitle = v.title;
-                                let title = effupedtitle.replace('@', '\'');
-                                let effupedartist = v.artist;
-                                let artist = effupedartist.replace('@', '\'');
-                                $(row).append("<td>" + title + "</td>");
-                                $(row).append("<td>" + artist + "</td>");
-                                $(row).append("<td>23985794</td>");
-                                $(row).append("<td>Dankcore</td>");
-                                $(row).append("<td>69</td>");
-                                $(row).append("<td><input type='checkbox'/></td>");
-                                $("#requestTable").append(row);
-                            });
-                      </script>
-                    </tbody>
-                </table>
-                <div class="text-right">
-                    <button id="clear" class="btn btn-primary">Clear</button>
-                    <script type="text/javascript">
-                        $("#clear").on('click', () => {
-                            localStorage.clear();
-                            window.location.reload();
-                        });
-                    </script>
+                    <h3>Requests</h3>
+                    <table id="requests" class="tablesorter table table-bordered table-hover">
+                        <thead>
+                            <tr class="info">
+                                <th>Title
+                                    <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                    <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                                </th>
+                                <th>Artist
+                                    <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                    <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                                </th>
+                                <th>Requests
+                                    <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                    <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                                </th>
+                                <th>Genre
+                                    <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                    <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                                </th>
+                                <th>BPM
+                                    <span class="js-sorter-desc glyphicon glyphicon-chevron-down pull-right"></span>
+                                    <span class="js-sorter-asc glyphicon glyphicon-chevron-up pull-right"></span>
+                                </th>
+                                <th>Link</th>
+                                <th>Done</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <div class="text-right">
+                        <button id="clear" class="btn btn-primary">
+                            <i class="fa fa-fw fa-trash"></i> Remove All
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+
+        <script>
+            $(document).ready(() => {
+                let requestsBody = $('#requests tbody');
+
+                let remove = function(entry) {
+                    $.get('/api/remove', { id: entry.id }).done(() => {
+                        load();
+                    })
+                };
+
+                let load = function() {
+                    console.log('reloading...');
+                    $.get('/api/list').done(data => {
+                        requestsBody.empty();
+                        for (let entry of data) {
+                            let row = $('<tr>');
+
+                            row.append(`<td>${entry.title}</td>`);
+                            row.append(`<td>${entry.artist}</td>`);
+                            row.append(`<td>${entry.count}</td>`);
+                            row.append(`<td>--</td>`);
+                            row.append(`<td>--</td>`);
+                            row.append(`<td><a href="https://youtu.be/${entry.id}" target="_blank" class="btn btn-primary">
+                                            <i class="fa fa-fw fa-external-link"></i> Link
+                                        </a></td>"`)
+
+                            let buttonCol = $('<td>');
+                            let button = $('<button>', {
+                                'class': 'btn btn-default',
+                            });
+                            button.append($('<span><i class="fa fa-fw fa-check"></i> Done</span>'));
+                            button.appendTo(buttonCol);
+                            button.click(() => remove(entry));
+
+                            row.append(buttonCol);
+                            requestsBody.append(row);
+                        }
+
+                        $('table').trigger('update');
+                    });
+                };
+
+                $('#clear').on('click', () => {
+                    $.get('/api/clear').done(data => {
+                        load();
+                    });
+                });
+
+                $('table').tablesorter({
+                    widgets: ['zebra', 'columns'],
+                    usNumberFormat: false,
+                    sortReset: true,
+                    sortRestart: true
+                });
+
+                setInterval(() => {
+                    load();
+                }, 3000);
+
+                load()
+            });
+        </script>
+    </body>
 </html>

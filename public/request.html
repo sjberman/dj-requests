@@ -10,38 +10,69 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="songs.json"></script>
         <script src="js/bootstrap.min.js"></script>
         <script>
-          'use strict';
-          var select = function(songTitle,songArtist) {
-            var songArray = [];
-            if (localStorage.getItem('requests')) {
-              var lsArray = localStorage.getItem('requests');
-              songArray = JSON.parse(lsArray);
-            }
-            var newReq = {"title":songTitle,"artist":songArtist};
-            songArray.push(newReq);
-            localStorage.setItem('requests',JSON.stringify(songArray));
-            let title = songTitle.replace(/@/,'\'');
-            let artist = songArtist.replace(/@/,'\'');
-            let request = {"title":title,"artist":artist};
-            document.getElementById("modalBodyText").innerHTML="Your song request ("+request.title+") has been submitted!";
-          };
-            var search = function() {
-                let query = $("#search-box").val().toLowerCase();
-                $.get( "/api/search", { q: query } ).done(function(data) {
-                    $("#result-list").empty();
-                    for (var i = 0; i < data.length; i++) {
-                        let res = $("<button onclick='select(\"" + data[i].split("-")[0] + "\",\"" + data[i].split("-")[1] + "\")'></button>");
-                        $(res).addClass("list-group-item");
-                        $(res).append('<h4 class="list-group-item-heading">' + data[i].split("-")[0] + '</h4>');
-                        $(res).append('<p class="list-group-item-text">' + data[i].split("-")[1] + '</p>');
-                        $(res).appendTo($("#result-list"));
+            'use strict';
+            $(document).ready(() => {
+                let searchBox = $('#search-box');
+                let resultRow = $('#result-row')
+                let resultList = $('#result-list');
+                let submitButton = $('#submit-button');
+                let submitModal = $('#submit-modal');
+                let modalBody = $('#modalBodyText');
+                let selected = null;
+
+                var select = function(song) {
+                    $.get('/api/add', { url: song.url }).done(data => {
+                        modalBody.html(
+                            `Your song request (${song.title} -
+                             ${song.artist}) has been submitted!`);
+                    });
+                };
+
+                var search = function() {
+                    let query = searchBox.val().toLowerCase();
+                    $.get('/api/search', { q: query } ).done(data => {
+                        resultList.empty();
+
+                        for (let song of data) {
+                            let button = $('<button>', { 'class': 'list-group-item' });
+                            button.append($('<h4>', {
+                                'text': song.title,
+                                'class': 'list-group-item-heading'
+                            }));
+                            button.append($('<p>', {
+                                'text': song.artist,
+                                'class': 'list-group-item-text'
+                            }));
+                            button.click(() => {
+                                selected = song;
+
+                                $("#result-list button").removeClass('active');
+                                button.addClass('active');
+                                submitButton.removeClass('disabled');
+                            });
+                            button.appendTo(resultList);
+                        }
+
+                        resultRow.show();
+                    });
+                };
+
+                searchBox.on('keydown', e => {
+                    if (e.which === 13) {
+                        search();
                     }
                 });
-            };
 
+                submitButton.click(() => {
+                    if (!selected) {
+                        return;
+                    }
+                    select(selected);
+                    submitModal.modal('show');
+                })
+            });
         </script>
     </head>
     <body>
@@ -60,7 +91,7 @@
                     <h3>Look Up
                         <small>
                             &nbsp;
-                            <i class="fa fa-spotify" aria-hidden="true"></i>,
+                            <!--<i class="fa fa-spotify" aria-hidden="true"></i>,-->
                             <i class="fa fa-youtube-square" aria-hidden="true"></i>,
                             Title, or Artist
                         </small>
@@ -79,7 +110,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div id="result-row" class="row" style="display: none">
                 <div class="col-md-12">
                     <h3>Results</h3>
 
@@ -87,17 +118,14 @@
                 </div>
                 <!--Submit Request Button and Confirmation Popup-->
                 <div class="text-center">
-                    <button id="submitButton"
-                            class="btn btn-primary"
-                            data-toggle="modal"
-                            data-target="#submitModal">
+                    <button id="submit-button" class="btn btn-primary disabled">
                         Submit Request
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="submit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

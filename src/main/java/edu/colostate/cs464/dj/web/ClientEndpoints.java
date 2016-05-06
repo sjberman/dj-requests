@@ -15,7 +15,7 @@ public class ClientEndpoints {
 	@GET
 	@Path("search")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<String> test(@QueryParam("q") String query) throws IOException {
+	public List<String> search(@QueryParam("q") String query) throws IOException {
 		return YouTubeAPI.get().search(query).stream()
 				.map(result -> result.getSnippet().getTitle())
 				.collect(Collectors.toList());

@@ -31,8 +31,11 @@ public class Main {
 		config.packages("edu.colostate.cs464.dj.web");
 
 		ServletHolder apiHolder = new ServletHolder(new ServletContainer(config));
+		ServletHolder twilioHolder = new ServletHolder(TwilioServlet.class);
+
 		ServletContextHandler apiContext = new ServletContextHandler(server, "/");
 		apiContext.addServlet(apiHolder, "/api/*");
+		apiContext.addServlet(twilioHolder, "/sms");
 
 		HandlerList handlers = new HandlerList();
 		handlers.setHandlers(new Handler[] {

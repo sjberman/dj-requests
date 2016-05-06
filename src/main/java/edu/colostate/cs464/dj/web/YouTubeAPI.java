@@ -89,6 +89,9 @@ public class YouTubeAPI {
 	public String videoId(String url) {
 		try {
 			URI uri = new URI(url);
+			if (uri.getHost() == null) {
+				return null;
+			}
 
 			String host = uri.getHost().toLowerCase();
 			if (host.startsWith("www.")) {
